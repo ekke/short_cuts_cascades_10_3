@@ -20,6 +20,24 @@ NavigationPane {
             scrollBehavior: TitleBarScrollBehavior.Sticky
         }
         
+        attachedObjects: [
+            ComponentDefinition {
+                id: shortcutSearchComponent
+                SystemShortcut {
+                    type: SystemShortcuts.Search
+                    onTriggered: {
+                        if(rootPage.toggle < 1){
+                            rootPage.toggle = 1
+                        } else {
+                            rootPage.toggle = 0
+                        }
+                    }
+                }
+            }
+        ]
+        
+        actionBarVisibility: ChromeVisibility.Compact
+        
         Container {
             id: outerContainer
             layout: DockLayout {
@@ -28,6 +46,8 @@ NavigationPane {
             ListView {
                 id: listView
                 topPadding: ui.du(4.0)
+                scrollRole: ScrollRole.Main
+                focusPolicy: FocusPolicy.KeyAndTouch
                 
                 dataModel: GroupDataModel {
                     id: dataModel
@@ -69,22 +89,9 @@ NavigationPane {
                 
             } // listView
             
-            
-            
         } // outerContainer
         
-        shortcuts: [
-            SystemShortcut {
-                type: SystemShortcuts.Search
-                onTriggered: {
-                    if(rootPage.toggle < 1){
-                        rootPage.toggle = 1
-                    } else {
-                        rootPage.toggle = 0
-                    }
-                }
-            }
-        ]
+        
         
         onCreationCompleted: {
             dataModel.insert({"name":"alpha"})
@@ -96,6 +103,16 @@ NavigationPane {
             dataModel.insert({"name":"ekkes-corner"})
             dataModel.insert({"name":"test"})
             dataModel.insert({"name":"zzz"})
+            //
+            // curious: in a more complex app shortcuts at Classic only working on ListView and for Passport on Page
+            // in this sample app shortcuts for Classic are working on bothg, Passport only on Page
+            if (app.isPassport()){
+                console.debug("shortcuts at Page")
+                rootPage.shortcuts = [shortcutSearchComponent.createObject()]
+            } else {
+                console.debug("shortcuts at ListView")
+                listView.shortcuts = [shortcutSearchComponent.createObject()]
+            }
         }
         
     } // rootPage

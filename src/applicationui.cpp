@@ -19,7 +19,10 @@
 #include <bb/cascades/Application>
 #include <bb/cascades/QmlDocument>
 #include <bb/cascades/AbstractPane>
+
 #include <bb/cascades/LocaleHandler>
+
+#include <bb/device/DisplayInfo.hpp>
 
 using namespace bb::cascades;
 
@@ -44,6 +47,8 @@ ApplicationUI::ApplicationUI() :
     // to ensure the document gets destroyed properly at shut down.
     QmlDocument *qml = QmlDocument::create("asset:///main.qml").parent(this);
 
+    qml->setContextProperty("app", this);
+
     // Create root object for the UI
     AbstractPane *root = qml->createRootObject<AbstractPane>();
 
@@ -59,5 +64,15 @@ void ApplicationUI::onSystemLanguageChanged()
     QString file_name = QString("cascades_short_cuts_%1").arg(locale_string);
     if (m_pTranslator->load(file_name, "app/native/qm")) {
         QCoreApplication::instance()->installTranslator(m_pTranslator);
+    }
+}
+
+bool ApplicationUI::isPassport()
+{
+    bb::device::DisplayInfo display;
+    if (display.pixelSize().width() == 1440 && display.pixelSize().height() == 1440) {
+        return true;
+    } else {
+        return false;
     }
 }
