@@ -14,15 +14,22 @@
  * limitations under the License.
  */
 
-import bb.cascades 1.2
+import bb.cascades 1.3
 
 TabbedPane {
     id: rootPane
     
     Tab {
+        title: qsTr("ListView 10.3")
+        List_10_3 {
+            
+        }
+    }
+    
+    Tab {
         title: qsTr("ListView 10.2")
         List_10_2 {
-            
+        
         }
     }
 }
