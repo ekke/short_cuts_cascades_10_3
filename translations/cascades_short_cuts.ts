@@ -5,7 +5,7 @@
     <name>List_10_2</name>
     <message>
         <location filename="../assets/List_10_2.qml" line="19"/>
-        <source>short cuts 10.2</source>
+        <source>short cuts 10.2 - S toggles Title</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -13,7 +13,7 @@
     <name>List_10_3</name>
     <message>
         <location filename="../assets/List_10_3.qml" line="19"/>
-        <source>short cuts 10.3</source>
+        <source>short cuts 10.3 - S toggles Title</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

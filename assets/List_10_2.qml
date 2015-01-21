@@ -16,7 +16,7 @@ NavigationPane {
         
         titleBar: TitleBar {
             id: titleBar
-            title: qsTr("short cuts 10.2")
+            title: qsTr("short cuts 10.2 - S toggles Title")
             scrollBehavior: TitleBarScrollBehavior.Sticky
         }
         
