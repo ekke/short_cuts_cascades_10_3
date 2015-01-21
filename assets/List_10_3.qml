@@ -105,7 +105,7 @@ NavigationPane {
             dataModel.insert({"name":"zzz"})
             //
             // curious: in a more complex app shortcuts at Classic only working on ListView and for Passport on Page
-            // in this sample app shortcuts for Classic are working on bothg, Passport only on Page
+            // in this sample app shortcuts for Classic are working on both, Passport only on Page
             if (app.isPassport()){
                 console.debug("shortcuts at Page")
                 rootPage.shortcuts = [shortcutSearchComponent.createObject()]
